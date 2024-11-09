@@ -15,19 +15,28 @@
 2. Selecione a opção **Clone**.
 3. Na janela de clonagem, siga as etapas:
 
+![Seleciona a opção Clone](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-01.png)
+
 #### 3.1. Definir Nome, ID e Tipo de Clone
 
 - **Name**: Insira `vm-ubuntu22` (nome da nova VM).
 - **VM ID**: Insira `201` (ID da nova VM).
 - **Clone Mode**: Selecione a opção **Full Clone**. Isso criará uma cópia completa do template, permitindo edições independentes para a nova VM.
 
+![Definir Clone](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-02.png)  
+
 #### 3.2. Opções Adicionais
 
 - **Target**: Escolha o **node** (servidor físico) onde a VM será criada.
 - **Storage**: Defina o armazenamento de disco que será utilizado para a nova VM.
+
+![Opções adicionais](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-03.png)
+
 - **Mac Address**: O Proxmox vai gerar um novo endereço MAC automaticamente.
 
 Clique em **Clone** para iniciar o processo de clonagem.
+
+![Clone](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-04.png)
 
 ### 4. Configurar Cloud-Init para a Nova VM
 
@@ -44,6 +53,9 @@ Na aba **Cloud-Init**, você pode configurar diversos parâmetros de inicializa�
 - **Password**: Defina uma senha para o usuário.
 - **DNS domain**: Defina o nome do domínio para a VM (ex: `vm-ubuntu.local`).
 - **DNS servers**: Defina os nomes dos nameservers do domínio para a VM (ex: `8.8.8.8 1.1.1.1`).
+  
+![DNS](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-06.png)
+
 - **SSH public key**: Insira a chave ssh para logar na VM (você pode colar ou carregar a partir de um arquivo).
 - **Upgrade packages**: Defina se deseja que o servidor seja atualizado automaticamente pelo cloud-init na inicialização.
 - **IP Configuration**: Configure a rede para a VM (você pode escolher um IP estático ou usar DHCP).
@@ -52,6 +64,8 @@ Na aba **Cloud-Init**, você pode configurar diversos parâmetros de inicializa�
    - **IPv4**: `192.168.1.10/24`
    - **Gateway**: `192.168.1.1`
 
+![Network config](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-05.png)
+
    **Ou, se você preferir usar DHCP**, deixe a configuração de IP em branco, e o Proxmox atribuirá um IP automaticamente.
 
 ### 5. Ajustes de Hardware e Outras Configurações (Hardware)
@@ -59,18 +73,29 @@ Na aba **Cloud-Init**, você pode configurar diversos parâmetros de inicializa�
 Você pode fazer ajustes adicionais no hardware da VM:
 
 - **CPU**: Defina o número de CPUs virtuais (quantidade de sockets e cores).
+
+![Processador](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-08.png)
+
 - **Memória**: Ajuste a quantidade de RAM conforme necessário (este valor é em megabytes).
+
 - **Disco**: Caso deseje aumentar o tamanho do disco, informe o valor que deseja acrescentar em gigabytes (ex: `10`).
+
+![Disco1](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-09.png)
+![Disco2](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-10.png)
 
 #### 5.1. Configurações Adicionais (Options)
 
 - **Start at boot**: Configure se deseja que a VM inicie automaticamente em caso de reboot do servidor proxmox.
 - **Protection**: Proteção pra evitar que a VM seja removida acidentalmente.
 
+![Opções adicionais](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-07.png)
+
 ### 6. Iniciar a VM
 
 1. Após configurar o Cloud-Init e o hardware da VM, clique na aba **Start** para iniciar a VM.
 2. O Proxmox irá iniciar a VM e o Cloud-Init será executado durante o boot para configurar a rede, o hostname, o usuário, e outras opções.
+
+![Start](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-11.png)
 
 ### 7. Acessar a VM via Console ou SSH
 
@@ -79,9 +104,17 @@ Após a VM ser inicializada, você pode acessar o console da VM diretamente pela
 1. Na nova VM `vm-ubuntu22`, clique na aba **Console** para acessar o terminal da VM diretamente.
 2. Se configurou as chaves SSH no Cloud-Init, também pode acessar a VM via SSH.
 
+![Acesso](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-12.png)   
+
 ### 8. Verificar se o Cloud-Init foi executado corretamente
 
 Se você configurou o Cloud-Init para atribuir um IP estático ou DHCP, verifique as configurações de rede da VM após ela ser iniciada.
+
+![Cloud-init](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-13.png)
+
+![Cloud-init2](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-14.png)
+
+![Cloud-init3](https://github.com/wyssantos/proxmox-vm-template/blob/main/images/Print-15.png)
 
 ### Conclusão
 
