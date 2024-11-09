@@ -7,19 +7,18 @@
 
 ### 2. Navegar até o Template
 
-1. No painel à esquerda, clique no **datacenter** onde seu template `temp-ubuntu22` está armazenado.
-2. Em seguida, clique na **armazenagem** que contém o template (por exemplo, `local`, `local-lvm`, etc.).
-3. Verifique se o template `temp-ubuntu22` está listado na seção de **Templates** dentro do armazenamento.
+1. No painel à esquerda, clique no **datacenter** onde seu template `template-ubuntu2204` está armazenado.
 
 ### 3. Clonar a VM usando "Clone Full"
 
-1. Clique com o botão direito no template **temp-ubuntu22**.
+1. Clique com o botão direito no template **template-ubuntu2204**.
 2. Selecione a opção **Clone**.
 3. Na janela de clonagem, siga as etapas:
 
-#### 3.1. Definir Nome e Tipo de Clone
+#### 3.1. Definir Nome, ID e Tipo de Clone
 
 - **Name**: Insira `vm-ubuntu22` (nome da nova VM).
+- **VM ID**: Insira `201` (ID da nova VM).
 - **Clone Mode**: Selecione a opção **Full Clone**. Isso criará uma cópia completa do template, permitindo edições independentes para a nova VM.
 
 #### 3.2. Opções Adicionais
@@ -44,28 +43,30 @@ Na aba **Cloud-Init**, você pode configurar diversos parâmetros de inicializa�
 - **User**: O nome de usuário do sistema (por exemplo, `ubuntu`).
 - **Password**: Defina uma senha para o usuário.
 - **SSH Keys**: Se necessário, adicione uma chave SSH para acesso remoto.
-- **Hostname**: Defina o nome do host para a VM (ex: `vm-ubuntu22`).
+- **DNS domain**: Defina o nome do domínio para a VM (ex: `vm-ubuntu.local`).
+- **DNS servers**: Defina os nomes dos nameservers do domínio para a VM (ex: `8.8.8.8 1.1.1.1`).
+- **SSH public key**: Insira a chave ssh para logar na VM (você pode colar ou carregar a partir de um arquivo).
+- **Upgrade packsges**: Defina se deseja que o servidor seja atualizado automaticamente pelo cloud-init na inicialização.
 - **IP Configuration**: Configure a rede para a VM (você pode escolher um IP estático ou usar DHCP).
 
    **Exemplo de configuração de rede (para IP estático)**:
-   - **IPv4**: `192.168.1.10`
-   - **Netmask**: `255.255.255.0`
+   - **IPv4**: `192.168.1.10/24`
    - **Gateway**: `192.168.1.1`
 
    **Ou, se você preferir usar DHCP**, deixe a configuração de IP em branco, e o Proxmox atribuirá um IP automaticamente.
 
-#### 4.2. Configurações Adicionais
-
-- **Timezone**: Configure o fuso horário, se necessário (ex: `America/Sao_Paulo`).
-- **DNS Servers**: Adicione servidores DNS personalizados se necessário (por exemplo, `8.8.8.8` para o Google DNS).
-
-### 5. Ajustes de Hardware e Outras Configurações
+### 5. Ajustes de Hardware e Outras Configurações (Hardware)
 
 Você pode fazer ajustes adicionais no hardware da VM:
 
-- **CPU**: Defina o número de CPUs virtuais.
-- **Memória**: Ajuste a quantidade de RAM conforme necessário.
-- **Disco**: Caso deseje aumentar ou diminuir o tamanho do disco, é possível fazer isso na aba **Hardware**.
+- **CPU**: Defina o número de CPUs virtuais (quantidade de sockets e cores).
+- **Memória**: Ajuste a quantidade de RAM conforme necessário (este valor é em megabytes).
+- **Disco**: Caso deseje aumentar o tamanho do disco, informe o valor que deseja acrescentar em gigabytes (ex: `10`).
+
+#### 5.1. Configurações Adicionais (Options)
+
+- **Start at boot**: Configure se deseja que a VM inicie automaticamente em caso de reboot do servidor proxmox.
+- **Protection**: Proteção pra evitar que a VM seja removida acidentalmente.
 
 ### 6. Iniciar a VM
 
@@ -85,5 +86,5 @@ Se você configurou o Cloud-Init para atribuir um IP estático ou DHCP, verifiqu
 
 ### Conclusão
 
-Agora você tem uma nova VM chamada `vm-ubuntu22`, clonada do template `temp-ubuntu22`, configurada para usar o **Cloud-Init** para personalizar automaticamente a configuração da máquina na inicialização, como IP, hostname, usuário e senha.
+Agora você tem uma nova VM chamada `vm-ubuntu22`, clonada do template `template-ubuntu2204`, configurada para usar o **Cloud-Init** para personalizar automaticamente a configuração da máquina na inicialização, como IP, hostname, usuário e senha.
 
