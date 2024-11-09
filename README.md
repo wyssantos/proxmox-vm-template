@@ -42,11 +42,10 @@ Na aba **Cloud-Init**, você pode configurar diversos parâmetros de inicializa�
 
 - **User**: O nome de usuário do sistema (por exemplo, `ubuntu`).
 - **Password**: Defina uma senha para o usuário.
-- **SSH Keys**: Se necessário, adicione uma chave SSH para acesso remoto.
 - **DNS domain**: Defina o nome do domínio para a VM (ex: `vm-ubuntu.local`).
 - **DNS servers**: Defina os nomes dos nameservers do domínio para a VM (ex: `8.8.8.8 1.1.1.1`).
 - **SSH public key**: Insira a chave ssh para logar na VM (você pode colar ou carregar a partir de um arquivo).
-- **Upgrade packsges**: Defina se deseja que o servidor seja atualizado automaticamente pelo cloud-init na inicialização.
+- **Upgrade packages**: Defina se deseja que o servidor seja atualizado automaticamente pelo cloud-init na inicialização.
 - **IP Configuration**: Configure a rede para a VM (você pode escolher um IP estático ou usar DHCP).
 
    **Exemplo de configuração de rede (para IP estático)**:
