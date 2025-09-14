@@ -43,7 +43,7 @@ virt-customize --add jammy-server-cloudimg-amd64.img --install qemu-guest-agent
 Agora, crie a VM que servirá como base para o template. O número da VM será `9999` neste exemplo, mas você pode escolher outro número.
 
 ```bash
-qm create 9999 --name template-ubuntu22 --numa 0 --ostype l26 --cpu cputype=host --sockets 1 --cores 2 --memory 2048 --net0 virtio,bridge=vmbr0
+qm create 9999 --name template-ubuntu22 --numa 1 --ostype l26 --cpu cputype=host --sockets 1 --cores 2 --memory 2048 --net0 virtio,bridge=vmbr0
 ```
 
 ### Explicação dos parâmetros:
